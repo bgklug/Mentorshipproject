@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         pic = (ViewGroup)findViewById(R.drawable.positive_smiley_happy);
-        for(int i=0; i>0; i++)
+        for(int i=0; i<5; i++)
         	pic.addView(pic,0,0);
     }
     
