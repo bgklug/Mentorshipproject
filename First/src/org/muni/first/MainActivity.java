@@ -48,6 +48,11 @@ public class MainActivity extends Activity {
         pic = (ViewGroup)findViewById(R.drawable.positive_smiley_happy);
         for(int i=0; i>0; i++)
         	pic.addView(pic,0,0);
+    }
+    
+    private ImageView newGraphic(int x,int y)
+    {
+		return null;
         
        // bit.createBitmap(,20,20,50,50);
        // screen = Canvas(bit);
@@ -64,14 +69,14 @@ public class MainActivity extends Activity {
        // smile = (ImageView)findViewById(R.id.imageView02);
        // move = (TextView)findViewById(R.id.textView2);
       // myinterp = new BounceInterpolator();
-        myinterp = new OvershootInterpolator(8.0f);
+       // myinterp = new OvershootInterpolator(8.0f);
        // myinterp = new AnticipateInterpolator(5f);
         
-        group= new AnimationSet(false);
-        down = new TranslateAnimation(100, 100, 200, 400);
-        down.setInterpolator(myinterp);
-        down.setDuration(5000);
-        down.setStartOffset(1000);
+        //group= new AnimationSet(false);
+       // down = new TranslateAnimation(100, 100, 200, 400);
+       // down.setInterpolator(myinterp);
+       // down.setDuration(5000);
+       // down.setStartOffset(1000);
        // down.setRepeatCount(Animation.INFINITE);
        // down.setRepeatMode(Animation.RESTART);
        // group.addAnimation(down);
@@ -86,7 +91,7 @@ public class MainActivity extends Activity {
         
        // smile.setAnimation(group);
        // smile.setAnimation(down);
-        pic.setAnimation(down);
+        //pic.setAnimation(down);
         
         //frown = (ImageView)findViewById(R.id.ImageView01);
         //up = new TranslateAnimation(100, 100, 400, 200);
@@ -103,7 +108,7 @@ public class MainActivity extends Activity {
 	@Override
     public void onWindowFocusChanged(boolean hasFocus){
     	super.onWindowFocusChanged(hasFocus);
-    	animateObject();
+    	//animateObject();
     }
     
     private void animateObject(){
@@ -112,10 +117,10 @@ public class MainActivity extends Activity {
     	//up.start();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+   // @Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
+       // getMenuInflater().inflate(R.menu.activity_main, menu);
+      //  return true;
+   // }
     
 }
