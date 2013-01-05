@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Newtest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_activitytest">Activitytest</string>
+
+</resources>
