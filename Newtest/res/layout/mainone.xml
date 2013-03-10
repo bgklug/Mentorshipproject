@@ -1,14 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/thePage"
+    android:orientation="vertical"
      >
 
-   <!--  <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world"
-        tools:context=".Activitytest" />-->
+     <View
+         android:id="@+id/spot"
+         android:layout_width="222dp"
+         android:layout_height="369dp"
+         android:layout_x="46dp"
+         android:layout_y="46dp" />
 
-</LinearLayout>
+</AbsoluteLayout>

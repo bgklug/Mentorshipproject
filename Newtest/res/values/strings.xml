@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_activitytest">Activitytest</string>
+    <string name="url_GetSampleSet">http://hhs.muni.org/Dashboard/DashboadDataServer.Svc/GetSampleSet?categoryID=</string>
+    <string name="url_GetCategories">http://hhs2.muni.org/Dashboard/DashboadDataServer.Svc/GetSampleSet</string>
 
 </resources>
