@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 //import android.widget.LinearLayout;
 
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.view.animation.ScaleAnimation;
@@ -61,21 +63,27 @@ import android.view.MotionEvent;
 
 public class Activitytest extends Activity {
 	
-	//TextView tv;
+	TextView tv;
 	ViewGroup pic;
 	View pics;
 	Interpolator myinterp;
 	TranslateAnimation down;
 	ImageView box;
 	GestureDetector finger;
-	ThreadAdder XMLpull = new ThreadAdder();
+	ThreadAdder XMLpullx = new ThreadAdder();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XMLpull.id = 1;
-        XMLpull.url = getString(R.string.url_GetSampleSet);
-        XMLpull.start();
+        
+        tv = (TextView)findViewById(R.id.tv); //isn'tworking
+        
+        tv.setText("Hello, Android world");       
+        
+        
+        XMLpullx.id = 3;
+        XMLpullx.url = getString(R.string.url_GetSampleSet);
+        XMLpullx.start();
         try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -84,7 +92,9 @@ public class Activitytest extends Activity {
 		}
         
         setContentView(R.layout.mainone);
-        pic = (ViewGroup)findViewById(R.id.thePage);       
+        pic = (ViewGroup)findViewById(R.id.thePage);
+        pics = (ImageView)findViewById(R.id.spot);
+       
         
         finger = new GestureDetector(this, new myGesture());
         
@@ -95,7 +105,7 @@ public class Activitytest extends Activity {
        int xvallast[] = {15, 70, 200, 150, 650};
        int yvalfirst[] = {50, 10, 200, 400, 100};
        int yvallast[] = {150, 50, 400, 200, 100};
-       int leg = XMLpull.results.length;
+       int leg = XMLpullx.results.length;
        int inc[] = new int[leg];
        int v = 1;
        int a =0;
@@ -105,11 +115,13 @@ public class Activitytest extends Activity {
        }
 //       float xval[] = display(xvallast);
 //       float yval[] = ydisplay(yvallast);
-       float yval[] = ydisplay(XMLpull.results);
+       
+       float yval[] = ydisplay(XMLpullx.results);
        float xval[] = display(inc);
 		for(int i=0; i<leg; i++){ //make new method for this
 			box = newGraphic();
 			pic.addView(box);
+//			pics.addView(box);
 			down = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, 1.0f, Animation.RELATIVE_TO_PARENT, yval[i]);//start bottom left corner
 			//down = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, yval[i]);//start line bottom
 			down.setDuration(1000);
@@ -154,7 +166,7 @@ public class Activitytest extends Activity {
     		if (maxval < x[i])
     			maxval = x[i];    		
     	}
-    	maxval = (int) (maxval *1.1);
+    	maxval = (int) (maxval *1.2);
     	for(int i=0; i< x.length; i++){
     		endval[i] = 1-((float)x[i]/maxval);
     	}
