@@ -29,6 +29,7 @@ import android.graphics.Paint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
+import android.graphics.Color;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -71,14 +72,16 @@ public class Activitytest extends Activity {
 	ImageView box;
 	GestureDetector finger;
 	ThreadAdder XMLpullx = new ThreadAdder();
+	ThreadAdder XMLpully = new ThreadAdder();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        tv = (TextView)findViewById(R.id.tv); //isn'tworking
+//        tv = (TextView)findViewById(R.id.tv); //isn't working
         
-        tv.setText("Hello, Android world");       
+//        tv.setText("Hello, Android world");       
         
         
         XMLpullx.id = 3;
@@ -91,20 +94,23 @@ public class Activitytest extends Activity {
 			e.printStackTrace();
 		}
         
-        setContentView(R.layout.mainone);
-        pic = (ViewGroup)findViewById(R.id.thePage);
-        pics = (ImageView)findViewById(R.id.spot);
-       
-        
+        setContentView(R.layout.vertical_tab);
+        pic = (ViewGroup)findViewById(R.id.theView);
+                
         finger = new GestureDetector(this, new myGesture());
         
-        //myinterp = new BounceInterpolator();
+//        myinterp = new BounceInterpolator();
         myinterp = new OvershootInterpolator(1.0f);
-        //myinterp = new AnticipateInterpolator(5f);
-       int xvalfirst[] = {10,70,110,256,500};
-       int xvallast[] = {15, 70, 200, 150, 650};
-       int yvalfirst[] = {50, 10, 200, 400, 100};
-       int yvallast[] = {150, 50, 400, 200, 100};
+//        myinterp = new AnticipateInterpolator(5f);
+        
+        int min = 0;//For range of value of the vectors
+        int max = 1;
+        
+//       int xvalfirst[] = {10,70,110,256,500};//initial test code, before ThreadAdder
+//       int xvallast[] = {15, 70, 200, 150, 650};
+//       int yvalfirst[] = {50, 10, 200, 400, 100};
+//       int yvallast[] = {150, 50, 400, 200, 100};
+        
        int leg = XMLpullx.results.length;
        int inc[] = new int[leg];
        int v = 1;
@@ -126,7 +132,7 @@ public class Activitytest extends Activity {
 			//down = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, yval[i]);//start line bottom
 			down.setDuration(1000);
 			down.setFillAfter(true); //makes the points stay after animation
-		    //down.setInterpolator(myinterp);//doesn't really work. the points fall off screen
+		    down.setInterpolator(myinterp);//doesn't really work. the points fall off screen
 			/**down = new TranslateAnimation(xvalfirst[i], xvallast[i], yvalfirst[i], yvallast[i]);
 		    down.setInterpolator(myinterp);
 		    down.setDuration(5000);
@@ -172,7 +178,20 @@ public class Activitytest extends Activity {
     	}
 		return endval;
 		}
-        
+    
+    private int color(int mag, int min, int max){
+    	int grayval;
+    	int lilco = mag/(max - min) * 255;
+    	if (lilco > 255){
+    		grayval = Color.rgb(255, 255, 255);
+    	}else if(lilco < 0){
+    		grayval = Color.rgb(0, 0, 0);
+    	}else{
+    		grayval = Color.rgb(lilco, lilco, lilco);
+    	}
+    	return grayval;
+    }
+    
     private ImageView newGraphic()
     {
     	ImageView face;

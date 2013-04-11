@@ -5,20 +5,35 @@
     android:layout_height="match_parent"
     android:id="@+id/thePage"
     android:orientation="vertical"
+ 
      >
-     
+    
+    <AbsoluteLayout 
+        android:id="@+id/theView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity ="left"
+ 
+        
+          />
+    
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity ="right"
+        android:text="Hello"
+        android:textSize="200dp"
+
           /> 
 
-     <ImageView
+ <!--     <ImageView
          android:id="@+id/spot"
          android:layout_width="fill_parent"
          android:layout_height="fill_parent"
          android:orientation="vertical"
-          />
+          /> -->
 
 </RelativeLayout>
