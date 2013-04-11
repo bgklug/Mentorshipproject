@@ -73,6 +73,9 @@ public class Activitytest extends Activity {
 	GestureDetector finger;
 	ThreadAdder XMLpullx = new ThreadAdder();
 	ThreadAdder XMLpully = new ThreadAdder();
+	int min = 0;//For range of value of the vectors
+    int max = 1;
+    double mag = .5;
 
 
     @Override
@@ -103,8 +106,6 @@ public class Activitytest extends Activity {
         myinterp = new OvershootInterpolator(1.0f);
 //        myinterp = new AnticipateInterpolator(5f);
         
-        int min = 0;//For range of value of the vectors
-        int max = 1;
         
 //       int xvalfirst[] = {10,70,110,256,500};//initial test code, before ThreadAdder
 //       int xvallast[] = {15, 70, 200, 150, 650};
@@ -125,7 +126,8 @@ public class Activitytest extends Activity {
        float yval[] = ydisplay(XMLpullx.results);
        float xval[] = display(inc);
 		for(int i=0; i<leg; i++){ //make new method for this
-			box = newGraphic();
+//			box = newGraphic();//old
+			box = newGraphic(mag);// for when gradience/ vectors are added
 			pic.addView(box);
 //			pics.addView(box);
 			down = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, xval[i], Animation.RELATIVE_TO_PARENT, 1.0f, Animation.RELATIVE_TO_PARENT, yval[i]);//start bottom left corner
@@ -179,9 +181,9 @@ public class Activitytest extends Activity {
 		return endval;
 		}
     
-    private int color(int mag, int min, int max){
+    private int color(double mag){
     	int grayval;
-    	int lilco = mag/(max - min) * 255;
+    	int lilco = (int) (mag/(max - min) * 255);
     	if (lilco > 255){
     		grayval = Color.rgb(255, 255, 255);
     	}else if(lilco < 0){
@@ -192,15 +194,17 @@ public class Activitytest extends Activity {
     	return grayval;
     }
     
-    private ImageView newGraphic()
+    private ImageView newGraphic(double mag)
     {
+    	int grayval = color(mag);//Add mag to input for newGraphic
     	ImageView face;
     	ShapeDrawable bm;
         bm = new ShapeDrawable(); //new  RectShape()
         //bm.setBounds(0, 0, 0+50, 0+50);
         bm.setIntrinsicHeight(50);
         bm.setIntrinsicWidth(50);
-        bm.getPaint().setColor(0xFFFF0000);
+//        bm.getPaint().setColor(0xFFFF0000);
+        bm.getPaint().setColor(grayval);
         face = new ImageView(this);
         face.setImageDrawable(bm);
         return face;
